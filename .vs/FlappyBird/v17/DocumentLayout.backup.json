@@ -1,0 +1,137 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\dev\\FlappyBird\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{6A7A003F-9EED-4701-96AB-0D17BAAB5CC6}|FlappyBird.vcxproj|C:\\dev\\FlappyBird\\FlappyBird.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{6A7A003F-9EED-4701-96AB-0D17BAAB5CC6}|FlappyBird.vcxproj|solutionrelative:FlappyBird.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6A7A003F-9EED-4701-96AB-0D17BAAB5CC6}|FlappyBird.vcxproj|C:\\dev\\FlappyBird\\FlappyBird.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{6A7A003F-9EED-4701-96AB-0D17BAAB5CC6}|FlappyBird.vcxproj|solutionrelative:FlappyBird.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6A7A003F-9EED-4701-96AB-0D17BAAB5CC6}|FlappyBird.vcxproj|C:\\dev\\FlappyBird\\Sprite.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{6A7A003F-9EED-4701-96AB-0D17BAAB5CC6}|FlappyBird.vcxproj|solutionrelative:Sprite.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6A7A003F-9EED-4701-96AB-0D17BAAB5CC6}|FlappyBird.vcxproj|C:\\dev\\FlappyBird\\Sprite.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{6A7A003F-9EED-4701-96AB-0D17BAAB5CC6}|FlappyBird.vcxproj|solutionrelative:Sprite.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6A7A003F-9EED-4701-96AB-0D17BAAB5CC6}|FlappyBird.vcxproj|C:\\DEV\\FLAPPYBIRD\\RAYLIB-5.0_WIN64_MSVC16\\INCLUDE\\RAYLIB.H||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{6A7A003F-9EED-4701-96AB-0D17BAAB5CC6}|FlappyBird.vcxproj|solutionrelative:RAYLIB-5.0_WIN64_MSVC16\\INCLUDE\\RAYLIB.H||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6A7A003F-9EED-4701-96AB-0D17BAAB5CC6}|FlappyBird.vcxproj|C:\\dev\\FlappyBird\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{6A7A003F-9EED-4701-96AB-0D17BAAB5CC6}|FlappyBird.vcxproj|solutionrelative:main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6A7A003F-9EED-4701-96AB-0D17BAAB5CC6}|FlappyBird.vcxproj|C:\\dev\\FlappyBird\\types.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{6A7A003F-9EED-4701-96AB-0D17BAAB5CC6}|FlappyBird.vcxproj|solutionrelative:types.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "raylib.h",
+              "DocumentMoniker": "C:\\dev\\FlappyBird\\raylib-5.0_win64_msvc16\\include\\raylib.h",
+              "RelativeDocumentMoniker": "raylib-5.0_win64_msvc16\\include\\raylib.h",
+              "ToolTip": "C:\\dev\\FlappyBird\\raylib-5.0_win64_msvc16\\include\\raylib.h",
+              "RelativeToolTip": "raylib-5.0_win64_msvc16\\include\\raylib.h",
+              "ViewState": "AgIAAJcAAAAAAAAAAAAkwKYAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-07T16:35:12.807Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Sprite.h",
+              "DocumentMoniker": "C:\\dev\\FlappyBird\\Sprite.h",
+              "RelativeDocumentMoniker": "Sprite.h",
+              "ToolTip": "C:\\dev\\FlappyBird\\Sprite.h",
+              "RelativeToolTip": "Sprite.h",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAB4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-02-05T14:12:12.748Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Sprite.cpp",
+              "DocumentMoniker": "C:\\dev\\FlappyBird\\Sprite.cpp",
+              "RelativeDocumentMoniker": "Sprite.cpp",
+              "ToolTip": "C:\\dev\\FlappyBird\\Sprite.cpp",
+              "RelativeToolTip": "Sprite.cpp",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAkwBwAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-02-05T14:12:02.444Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "types.h",
+              "DocumentMoniker": "C:\\dev\\FlappyBird\\types.h",
+              "RelativeDocumentMoniker": "types.h",
+              "ToolTip": "C:\\dev\\FlappyBird\\types.h",
+              "RelativeToolTip": "types.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-02-05T12:02:19.121Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "main.cpp",
+              "DocumentMoniker": "C:\\dev\\FlappyBird\\main.cpp",
+              "RelativeDocumentMoniker": "main.cpp",
+              "ToolTip": "C:\\dev\\FlappyBird\\main.cpp",
+              "RelativeToolTip": "main.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-02-05T12:02:18.074Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FlappyBird.h",
+              "DocumentMoniker": "C:\\dev\\FlappyBird\\FlappyBird.h",
+              "RelativeDocumentMoniker": "FlappyBird.h",
+              "ToolTip": "C:\\dev\\FlappyBird\\FlappyBird.h",
+              "RelativeToolTip": "FlappyBird.h",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAAC4AAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-02-05T12:02:17.185Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FlappyBird.cpp",
+              "DocumentMoniker": "C:\\dev\\FlappyBird\\FlappyBird.cpp",
+              "RelativeDocumentMoniker": "FlappyBird.cpp",
+              "ToolTip": "C:\\dev\\FlappyBird\\FlappyBird.cpp",
+              "RelativeToolTip": "FlappyBird.cpp",
+              "ViewState": "AgIAAJsAAAAAAAAAAAD4v7UAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-02-05T12:02:13.496Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
