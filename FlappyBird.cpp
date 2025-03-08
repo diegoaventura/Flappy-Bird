@@ -29,9 +29,9 @@ FlappyBird::~FlappyBird()
 
 void FlappyBird::InitSprites()
 {
-	m_BirdTexture = LoadTexture("Bird1-1.png");
-	m_BackgroundTexture = LoadTexture("background1.png");
-	m_TubeTexture = LoadTexture("PipeStyle1.png");
+	m_BirdTexture = LoadTexture("data/Bird1-1.png");
+	m_BackgroundTexture = LoadTexture("data/background1.png");
+	m_TubeTexture = LoadTexture("data/PipeStyle1.png");
 	
 	// Load and set the scale of the sprites
 	m_Background.Load(&m_BackgroundTexture, { {0, 0},{256, 256} });
