@@ -12,7 +12,7 @@ struct rect
 	int2 size;
 };
 
-inline bool Overlaps(rect a, rect b)
+inline bool Overlaps(const rect a, const rect b)
 {
 	if (a.pos.x > (b.pos.x + b.size.x) || ((a.pos.x + a.size.x) < b.pos.x))
 	{

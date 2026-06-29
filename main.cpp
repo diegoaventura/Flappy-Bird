@@ -1,11 +1,18 @@
-#include "raylib.h"
-#include <cassert>
-#include <cstdlib>
-#include <ctime>
+    #include "raylib.h"
+    #include <cassert>
+    #include <cstdlib>
+    #include <ctime>
 #include "FlappyBird.h"
+#include "MainMenu.h"
 
 constexpr int window_width = 1280;
 constexpr int window_height = 720;
+
+enum class AppState
+{
+    MainMenu,
+    Game
+};
 
 int main(void)
 {
@@ -18,8 +25,10 @@ int main(void)
     canvas.size.x = window_width;
     canvas.size.y = window_height;
 
+    MainMenu menu(canvas);
     FlappyBird game(canvas);
-    
+
+    AppState appState = AppState::MainMenu;    
 
     double lastTime = GetTime();
     bool shouldExit = false;
@@ -33,11 +42,51 @@ int main(void)
             if (elapsedTime > 0.1f)
                 elapsedTime = 0.1f;
 
-            game.Update(elapsedTime);
-            BeginDrawing();
-            game.Render();
-            EndDrawing();
             lastTime = currentTime;
+
+            switch (appState)
+            {
+            case AppState::MainMenu:
+            {
+                MainMenu::ReturnState state = menu.Update(elapsedTime);
+
+                if (state == MainMenu::ReturnState::Start)
+                {
+                    appState = AppState::Game;
+                    // Reiniciar el juego si tienes una función Reset()
+                }
+                else if (state == MainMenu::ReturnState::Exit)
+                {
+                    shouldExit = true;
+                }
+            }
+            break;
+
+            case AppState::Game:
+            {
+                game.Update(elapsedTime);
+
+                // Si tu juego tiene Game Over y quieres volver al menú:
+                // if (game.GameOver())
+                //     appState = AppState::MainMenu;
+            }
+            break;
+        }
+        BeginDrawing();
+
+        switch (appState)
+        {
+        case AppState::MainMenu:
+            menu.Draw();
+            break;
+
+        case AppState::Game:
+            game.Render();
+            break;
+        }
+
+        EndDrawing();
+        
 
         }
     }

@@ -9,7 +9,7 @@ FlappyBird::FlappyBird(rect canvas)
 	m_Bird.SetPosition({ m_Canvas.size.x / 10 ,m_Canvas.size.y / 2 });
 
 	m_WorldPosition = 0.f;
-	m_WorldSpeed = 1280.f / 5;
+	m_WorldSpeed = 1280.f / 4;
 	m_BirdSpeed = 0;
 	m_BirdPos = m_Canvas.size.y / 2;
 	m_TubeSpace.x = 400;
@@ -24,7 +24,9 @@ FlappyBird::FlappyBird(rect canvas)
 
 FlappyBird::~FlappyBird()
 {
-
+	UnloadTexture(m_BirdTexture);
+	UnloadTexture(m_BackgroundTexture);
+	UnloadTexture(m_TubeTexture);
 }
 
 void FlappyBird::InitSprites()
@@ -110,6 +112,7 @@ bool FlappyBird::Update(float elapsedTime)
 		m_WorldSpeed -= 10;
 	}
 
+
 	// Update all the sprites
 	m_Background.Update();
 	m_TubeUp.Update();
@@ -128,6 +131,7 @@ bool FlappyBird::Update(float elapsedTime)
 	m_BirdColor = WHITE;
 	
 	m_Score = (m_WorldPosition + (m_Canvas.size.x / 10) ) / m_TubeSpace.x;
+
 
 	return true;
 }
