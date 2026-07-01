@@ -6,15 +6,29 @@
 class FlappyBird
 {
 public:
+
+	enum class ReturnState
+	{
+		Nothing,
+		Exit
+	};
+
 			FlappyBird(rect canvas);
 			~FlappyBird();
 
-	bool	Update(float elapsedTime);
-
-	void	Render();
+	ReturnState	Update(float elapsedTime);
+	void		Reset();
+	void		Render();
 
 
 private:
+
+	enum class GameState
+	{
+		Playing,
+		Pause,
+		GameOver
+	};
 
 	enum class TubeColor
 	{
@@ -45,6 +59,8 @@ private:
 	void		DrawTubes(int2 pos, int h, TubeColor color);
 	void		DrawTubeUpside(int2 pos, TubeColor color);
 	void		DrawTubeDownside(int2 pos, TubeColor color);
+	void		DrawPause();
+	void		DrawGameOver();
 
 	void		ResetTubeMap(int n);
 
@@ -54,6 +70,9 @@ private:
 	float		m_BirdSpeed;
 	float		m_BirdPos;
 	Color		m_BirdColor;
+	Color		textColor = { 0xFF, 0xFF, 0xFF, 0xFF }; // Blanco
+
+	GameState	m_GameState;
 
 	int2		m_TubeSpace;
 	rect		m_TubeSpriteRect[8][3];

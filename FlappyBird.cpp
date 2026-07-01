@@ -29,6 +29,31 @@ FlappyBird::~FlappyBird()
 	UnloadTexture(m_TubeTexture);
 }
 
+void FlappyBird::Reset()
+{
+	m_GameState = GameState::Playing;
+
+	m_Bird.SetPosition({ m_Canvas.size.x / 10, m_Canvas.size.y / 2 });
+
+	m_WorldPosition = 0.0f;
+	m_WorldSpeed = 1280.0f / 4.0f;
+
+	m_BirdSpeed = 0.0f;
+	m_BirdPos = m_Canvas.size.y / 2;
+
+	m_Score = 0;
+
+	m_BirdColor = WHITE;
+
+	m_TubeMapDirty[0] = true;
+	m_TubeMapDirty[1] = true;
+
+	ResetTubeMap(0);
+
+	m_TubeMapDirty[0] = false;
+
+}
+
 void FlappyBird::InitSprites()
 {
 	m_BirdTexture = LoadTexture("data/Bird1-1.png");
@@ -84,8 +109,38 @@ void FlappyBird::InitSprites()
 	m_Bird.SetScale(3.0f);
 }
 
-bool FlappyBird::Update(float elapsedTime)
+FlappyBird::ReturnState FlappyBird::Update(float elapsedTime) 
 {
+	ReturnState retState = ReturnState::Nothing;
+
+	if (m_GameState == GameState::GameOver)
+	{
+		if (IsKeyPressed(KEY_SPACE))
+		{
+			Reset();
+		}
+		if (IsKeyPressed(KEY_M))
+			retState = ReturnState::Exit;
+
+		return retState;
+	}
+
+	if (m_GameState == GameState::Pause)
+	{
+		if (IsKeyPressed(KEY_P))
+			m_GameState = GameState::Playing;
+
+		if (IsKeyPressed(KEY_M))
+			retState = ReturnState::Exit;
+
+		return retState;
+	}
+
+	if (IsKeyPressed(KEY_P))
+	{
+		m_GameState = GameState::Pause;
+	}
+
 	// Check if the space is pressed and making the bird fly
 	if (IsKeyPressed(KEY_SPACE))
 	{
@@ -127,13 +182,17 @@ bool FlappyBird::Update(float elapsedTime)
 	m_BirdSpeed += 800 * elapsedTime;
 	m_BirdPos = m_BirdPos + m_BirdSpeed * elapsedTime;
 	m_Bird.SetPosition(int2{ m_Bird.GetPosition().x, static_cast<int>(m_BirdPos) });
+	if (m_BirdPos < 0 || m_BirdPos > m_Canvas.size.y)
+	{
+		m_GameState = GameState::GameOver;
+	}
 
 	m_BirdColor = WHITE;
 	
 	m_Score = (m_WorldPosition + (m_Canvas.size.x / 10) ) / m_TubeSpace.x;
 
 
-	return true;
+	return retState;
 }
 
 void FlappyBird::Render()
@@ -189,6 +248,16 @@ void FlappyBird::Render()
 	m_Bird.Render(m_BirdColor);
 
 	DrawText(TextFormat("Score: %02i", m_Score), 5, 5, 55, BLACK);
+
+	switch (m_GameState)
+	{
+	case GameState::Pause:
+		DrawPause();
+		break;
+	case GameState::GameOver:
+		DrawGameOver();
+		break;
+	}
 	 
 }
 
@@ -201,6 +270,7 @@ void FlappyBird::DrawTubeUpside(int2 pos, TubeColor color)
 	if (Overlaps(m_Bird.GetRect(), m_TubeUp.GetRect()))
 	{
 		m_BirdColor = RED;
+		m_GameState = GameState::GameOver;
 	}
 
 	m_TubeMid.SetPosition({ m_TubeUp.GetPosition().x, m_TubeUp.GetPosition().y + m_TubeUp.GetSize().y });
@@ -210,6 +280,7 @@ void FlappyBird::DrawTubeUpside(int2 pos, TubeColor color)
 	if (Overlaps(m_Bird.GetRect(), m_TubeMid.GetRect()))
 	{
 		m_BirdColor = RED;
+		m_GameState = GameState::GameOver;
 	}
 
 	while (m_TubeMid.GetPosition().y + m_TubeMid.GetSize().y <= m_Canvas.size.y)
@@ -222,6 +293,7 @@ void FlappyBird::DrawTubeUpside(int2 pos, TubeColor color)
 		if (Overlaps(m_Bird.GetRect(), m_TubeMid.GetRect()))
 		{
 			m_BirdColor = RED;
+			m_GameState = GameState::GameOver;
 		}
 	}
 }
@@ -235,6 +307,7 @@ void FlappyBird::DrawTubeDownside(int2 pos, TubeColor color)
 	if (Overlaps(m_Bird.GetRect(), m_TubeDown.GetRect()))
 	{
 		m_BirdColor = RED;
+		m_GameState = GameState::GameOver;
 	}
 
 	m_TubeMid.SetPosition({ m_TubeDown.GetPosition().x, m_TubeDown.GetPosition().y - m_TubeMid.GetSize().y });
@@ -244,6 +317,7 @@ void FlappyBird::DrawTubeDownside(int2 pos, TubeColor color)
 	if (Overlaps(m_Bird.GetRect(), m_TubeMid.GetRect()))
 	{
 		m_BirdColor = RED;
+		m_GameState = GameState::GameOver;
 	}
 
 	while (m_TubeMid.GetPosition().y > 0)
@@ -256,6 +330,7 @@ void FlappyBird::DrawTubeDownside(int2 pos, TubeColor color)
 		if (Overlaps(m_Bird.GetRect(), m_TubeMid.GetRect()))
 		{
 			m_BirdColor = RED;
+			m_GameState = GameState::GameOver;
 		}
 	}
 }
@@ -264,6 +339,41 @@ void FlappyBird::DrawTubes(int2 pos, int h, TubeColor color)
 {
 	DrawTubeUpside({ pos.x, pos.y + h / 2 }, color);
 	DrawTubeDownside({ pos.x, pos.y - h / 2 }, color);
+}
+
+void FlappyBird::DrawPause()
+{
+	constexpr int textFontSize = 80;
+	constexpr int smallFontSize = textFontSize - 20;
+
+	const int textWidth = MeasureText("Pause", textFontSize);
+	const int textX = (m_Canvas.size.x - textWidth) / 2;
+	DrawText("Pause", textX, 50, textFontSize, textColor);
+
+
+	const int menuWidth = MeasureText("Main Menu", smallFontSize);
+	const int menuX = (m_Canvas.size.x / 4) - (menuWidth / 2);
+	DrawText("Main Menu", menuX, 300, smallFontSize, textColor);
+	DrawText("(M)", menuX, 300 + textFontSize, smallFontSize, textColor);
+
+	const int resumeWidth = MeasureText("Resume", smallFontSize);
+	const int resumeX = (m_Canvas.size.x * 3 / 4) - (resumeWidth / 2);
+	DrawText("Resume", resumeX, 300, smallFontSize, textColor);
+	DrawText("(Space)", resumeX, 300 + textFontSize, smallFontSize, textColor);
+}
+
+void FlappyBird::DrawGameOver()
+{
+	constexpr int textFontSize = 80;
+	const int textWidth = MeasureText("Game Over", textFontSize);
+	const int textX = (m_Canvas.size.x - textWidth) / 2;
+	DrawText("Game Over", textX, 50, textFontSize, textColor);
+
+	const int scoreWidth = MeasureText(TextFormat("Score: %02i", m_Score), 40);
+	DrawText(TextFormat("Score: %02i", m_Score), (m_Canvas.size.x - scoreWidth) / 2, 150, 40, textColor);
+
+	DrawText("(Space) Retry", textX, 300, 40, textColor);
+	DrawText("(M) Main Menu", textX, 350, 40, textColor);
 }
 
 void FlappyBird::ResetTubeMap(int n)

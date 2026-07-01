@@ -47,13 +47,13 @@ int main(void)
             switch (appState)
             {
             case AppState::MainMenu:
-            {
+            {       
                 MainMenu::ReturnState state = menu.Update(elapsedTime);
 
                 if (state == MainMenu::ReturnState::Start)
                 {
                     appState = AppState::Game;
-                    // Reiniciar el juego si tienes una función Reset()
+                    game.Reset();
                 }
                 else if (state == MainMenu::ReturnState::Exit)
                 {
@@ -64,11 +64,12 @@ int main(void)
 
             case AppState::Game:
             {
-                game.Update(elapsedTime);
+                FlappyBird::ReturnState state = game.Update(elapsedTime);
 
-                // Si tu juego tiene Game Over y quieres volver al menú:
-                // if (game.GameOver())
-                //     appState = AppState::MainMenu;
+                if (state == FlappyBird::ReturnState::Exit)
+                {
+                    appState = AppState::MainMenu;
+                }
             }
             break;
         }
