@@ -25,6 +25,7 @@ private:
 
 	enum class GameState
 	{
+		Ready,
 		Playing,
 		Pause,
 		GameOver
@@ -61,8 +62,11 @@ private:
 	void		DrawTubeDownside(int2 pos, TubeColor color);
 	void		DrawPause();
 	void		DrawGameOver();
+	void		DrawCountDown();
 
 	void		ResetTubeMap(int n);
+
+	float		m_ReadyTimer = 3.0f;
 
 	float		m_WorldPosition;
 	float		m_WorldSpeed;
@@ -70,7 +74,7 @@ private:
 	float		m_BirdSpeed;
 	float		m_BirdPos;
 	Color		m_BirdColor;
-	Color		textColor = { 0xFF, 0xFF, 0xFF, 0xFF }; // Blanco
+	Color		textColor = BLACK;
 
 	GameState	m_GameState;
 

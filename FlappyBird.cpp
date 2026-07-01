@@ -31,7 +31,8 @@ FlappyBird::~FlappyBird()
 
 void FlappyBird::Reset()
 {
-	m_GameState = GameState::Playing;
+	m_GameState = GameState::Ready;
+	m_ReadyTimer = 3.0f;
 
 	m_Bird.SetPosition({ m_Canvas.size.x / 10, m_Canvas.size.y / 2 });
 
@@ -112,6 +113,31 @@ void FlappyBird::InitSprites()
 FlappyBird::ReturnState FlappyBird::Update(float elapsedTime) 
 {
 	ReturnState retState = ReturnState::Nothing;
+
+	if (m_GameState == GameState::Ready)
+	{
+		m_ReadyTimer -= elapsedTime;
+		if (m_ReadyTimer <= 0.0f)
+		{
+			m_GameState = GameState::Playing;
+		}
+
+		// Press Space to a early start
+		if (IsKeyPressed(KEY_SPACE))
+		{
+			m_GameState = GameState::Playing;
+			if (m_BirdSpeed > 0)
+				m_BirdSpeed = -400;
+			else
+			{
+				m_BirdSpeed += -400;
+				if (m_BirdSpeed < -800)
+					m_BirdSpeed = -800;
+			}
+		}
+
+		return ReturnState::Nothing;
+	}
 
 	if (m_GameState == GameState::GameOver)
 	{
@@ -251,6 +277,9 @@ void FlappyBird::Render()
 
 	switch (m_GameState)
 	{
+	case GameState::Ready:
+		DrawCountDown();
+		break;
 	case GameState::Pause:
 		DrawPause();
 		break;
@@ -374,6 +403,21 @@ void FlappyBird::DrawGameOver()
 
 	DrawText("(Space) Retry", textX, 300, 40, textColor);
 	DrawText("(M) Main Menu", textX, 350, 40, textColor);
+}
+
+void FlappyBird::DrawCountDown()
+{
+	int number = static_cast<int>(m_ReadyTimer) + 1;
+	if (number > 3) number = 3;
+	if (number < 1) number = 1;
+
+	const char* text = TextFormat("%i", number);
+	constexpr int fontSize = 120;
+	const int textWidth = MeasureText(text, fontSize);
+	const int textX = (m_Canvas.size.x - textWidth) / 2;
+	const int textY = (m_Canvas.size.y - fontSize) / 2;
+
+	DrawText(text, textX, textY, fontSize, BLACK);
 }
 
 void FlappyBird::ResetTubeMap(int n)
